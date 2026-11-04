@@ -1,0 +1,67 @@
+<section class="section-spacing page-width" id="FeaturedProducts-{{ section.id }}">
+  <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2.5rem; border-bottom: 1px solid var(--color-border); padding-bottom: 1.25rem;">
+    <div>
+      <div style="font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-text-secondary); margin-bottom: 0.5rem;">
+        {{ section.settings.subheading | default: 'COMPLETE YOUR SYSTEM' }}
+      </div>
+      <h2 style="font-size: clamp(1.75rem, 3.5vw, 2.5rem); letter-spacing: -0.03em;">
+        {{ section.settings.title | default: 'RECOMMENDED GEAR.' }}
+      </h2>
+    </div>
+  </div>
+
+  <div class="product-grid">
+    {%- if section.settings.collection != blank and section.settings.collection.products.size > 0 -%}
+      {%- for product in section.settings.collection.products limit: 4 -%}
+        {% render 'product-card', card_product: product %}
+      {%- endfor -%}
+    {%- else -%}
+      {%- for i in (1..4) -%}
+        <div class="product-card">
+          <div class="product-card-media" style="display: flex; align-items: center; justify-content: center; background: var(--color-bg-secondary);">
+            <span style="font-size: 0.75rem; font-weight: 700; color: var(--color-text-secondary); letter-spacing: 0.1em;">
+              RUNNING PRODUCT {{ i }}
+            </span>
+          </div>
+          <div class="product-card-info">
+            <div style="font-size: 0.6875rem; font-weight: 700; color: var(--color-text-secondary);">PERFORMANCE GEAR</div>
+            <h3 class="product-card-title">HIIT PRO RUNNING GEAR {{ i }}</h3>
+            <div class="product-card-meta">
+              <span class="product-price">$94.00</span>
+            </div>
+          </div>
+        </div>
+      {%- endfor -%}
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Featured Products",
+  "settings": [
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "COMPLETE YOUR SYSTEM"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "RECOMMENDED GEAR."
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Products"
+    }
+  ]
+}
+{% endschema %}

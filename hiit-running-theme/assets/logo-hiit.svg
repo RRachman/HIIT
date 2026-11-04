@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 48" fill="none">
+  <!-- Dynamic athletic italic HIIT letterforms with geometric forward slant -->
+  <g transform="skewX(-14)">
+    <!-- H -->
+    <rect x="22" y="6" width="7" height="36" fill="currentColor"/>
+    <rect x="39" y="6" width="7" height="36" fill="currentColor"/>
+    <rect x="22" y="21" width="24" height="6.5" fill="currentColor"/>
+    
+    <!-- First I -->
+    <rect x="58" y="6" width="7" height="36" fill="currentColor"/>
+    
+    <!-- Second I -->
+    <rect x="76" y="6" width="7" height="36" fill="currentColor"/>
+    
+    <!-- T -->
+    <rect x="92" y="6" width="30" height="6.5" fill="currentColor"/>
+    <rect x="103.5" y="6" width="7" height="36" fill="currentColor"/>
+  </g>
+</svg>

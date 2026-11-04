@@ -1,0 +1,148 @@
+<header class="header-wrapper" role="banner">
+  <div class="page-width header-container">
+    {%- comment -%} Mobile Hamburger Toggle {%- endcomment -%}
+    <div style="display: flex; align-items: center; gap: 0.5rem;" class="mobile-menu-trigger-wrap">
+      <button
+        type="button"
+        class="header-icon-btn mobile-menu-toggle"
+        data-action="toggle-mobile-menu"
+        aria-label="{{ 'sections.header.menu' | t }}"
+        style="display: flex;"
+      >
+        {% render 'icon-menu' %}
+      </button>
+
+      {%- comment -%} Logo {%- endcomment -%}
+      <div class="header-logo">
+        <a href="{{ routes.root_url }}" aria-label="{{ shop.name }}">
+          {%- if section.settings.logo != blank -%}
+            <img
+              src="{{ section.settings.logo | image_url: width: 300 }}"
+              alt="{{ section.settings.logo.alt | default: shop.name }}"
+              style="max-width: {{ section.settings.logo_width }}px; height: auto;"
+            >
+          {%- else -%}
+            <span class="hiit-brand-logo">HIIT</span>
+          {%- endif -%}
+        </a>
+      </div>
+    </div>
+
+    {%- comment -%} Desktop Center Nav Links {%- endcomment -%}
+    <nav class="header-nav" role="navigation" aria-label="Main Navigation">
+      {%- if section.settings.menu != blank -%}
+        {%- for link in linklists[section.settings.menu].links -%}
+          <a
+            href="{{ link.url }}"
+            class="nav-link {% if link.active %}active{% endif %}"
+          >
+            {{ link.title }}
+          </a>
+        {%- endfor -%}
+      {%- else -%}
+        <a href="{{ routes.root_url }}" class="nav-link {% if template == 'index' %}active{% endif %}">HOME</a>
+        <a href="{{ routes.all_products_collection_url }}" class="nav-link {% if template contains 'collection' %}active{% endif %}">SHOP</a>
+        <a href="/pages/about" class="nav-link {% if page.handle == 'about' %}active{% endif %}">ABOUT</a>
+        <a href="/pages/contact" class="nav-link {% if page.handle == 'contact' %}active{% endif %}">CONTACT</a>
+      {%- endif -%}
+    </nav>
+
+    {%- comment -%} Right Header Utilities {%- endcomment -%}
+    <div class="header-icons">
+      <button
+        type="button"
+        class="header-icon-btn"
+        data-action="open-search"
+        aria-label="{{ 'sections.header.search' | t }}"
+      >
+        {% render 'icon-search' %}
+      </button>
+
+      <a
+        href="{{ routes.cart_url }}"
+        class="header-icon-btn"
+        data-action="open-cart"
+        aria-label="{{ 'sections.header.cart' | t }}"
+      >
+        {% render 'icon-cart' %}
+        <span class="cart-count-badge" style="display: {% if cart.item_count > 0 %}flex{% else %}none{% endif %};">
+          {{ cart.item_count }}
+        </span>
+      </a>
+    </div>
+  </div>
+
+  {%- comment -%} Mobile Navigation Slide-out Drawer {%- endcomment -%}
+  <div class="mobile-nav-overlay" data-action="close-mobile-menu" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 1000;"></div>
+  <aside class="mobile-nav-drawer" style="position: fixed; top: 0; left: 0; bottom: 0; width: 85%; max-width: 320px; background: var(--color-bg-primary); z-index: 1001; transform: translateX(-100%); transition: transform 0.3s ease; padding: 2rem 1.5rem; display: flex; flex-direction: column; justify-content: space-between;">
+    <div>
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2.5rem;">
+        <span class="hiit-brand-logo">HIIT</span>
+        <button type="button" data-action="close-mobile-menu" style="background: none; border: none; cursor: pointer;">
+          {% render 'icon-close' %}
+        </button>
+      </div>
+
+      <nav style="display: flex; flex-direction: column; gap: 1.5rem;">
+        <a href="{{ routes.root_url }}" style="font-size: 1.125rem; font-weight: 800; text-transform: uppercase;">HOME</a>
+        <a href="{{ routes.all_products_collection_url }}" style="font-size: 1.125rem; font-weight: 800; text-transform: uppercase;">SHOP ALL</a>
+        <a href="/pages/about" style="font-size: 1.125rem; font-weight: 800; text-transform: uppercase;">OUR STORY</a>
+        <a href="/pages/contact" style="font-size: 1.125rem; font-weight: 800; text-transform: uppercase;">CONTACT</a>
+      </nav>
+    </div>
+
+    <div style="border-top: 1px solid var(--color-border); padding-top: 1.5rem; font-size: 0.8125rem; color: var(--color-text-secondary);">
+      <p style="font-weight: 700; color: var(--color-text-primary); margin-bottom: 0.25rem;">HIIT RUNNING APPAREL</p>
+      <p>Performance apparel designed for movement.</p>
+    </div>
+  </aside>
+</header>
+
+<style>
+  @media (min-width: 860px) {
+    .mobile-menu-toggle {
+      display: none !important;
+    }
+  }
+  .mobile-nav-drawer.is-active {
+    transform: translateX(0) !important;
+  }
+  .mobile-nav-overlay.is-active {
+    display: block !important;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo image"
+    },
+    {
+      "type": "range",
+      "id": "logo_width",
+      "min": 60,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "label": "Custom logo width",
+      "default": 110
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu",
+      "default": "main-menu"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_sticky_header",
+      "label": "Enable sticky header",
+      "default": true
+    }
+  ]
+}
+{% endschema %}

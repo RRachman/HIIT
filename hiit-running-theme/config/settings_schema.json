@@ -1,0 +1,172 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "HIIT Running",
+    "theme_version": "1.0.0",
+    "theme_author": "HIIT Design Team",
+    "theme_documentation_url": "https://hiitrunning.com/docs",
+    "theme_support_url": "https://hiitrunning.com/support"
+  },
+  {
+    "name": "Brand & Logo",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo image"
+      },
+      {
+        "type": "range",
+        "id": "logo_width",
+        "min": 50,
+        "max": 250,
+        "step": 10,
+        "unit": "px",
+        "label": "Custom logo width",
+        "default": 110
+      },
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon image"
+      }
+    ]
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      {
+        "type": "color",
+        "id": "color_bg_primary",
+        "label": "Primary Background",
+        "default": "#F0F0ED"
+      },
+      {
+        "type": "color",
+        "id": "color_bg_secondary",
+        "label": "Secondary Background",
+        "default": "#E5E6E2"
+      },
+      {
+        "type": "color",
+        "id": "color_text_primary",
+        "label": "Primary Text",
+        "default": "#17191B"
+      },
+      {
+        "type": "color",
+        "id": "color_text_secondary",
+        "label": "Secondary Text",
+        "default": "#777B7D"
+      },
+      {
+        "type": "color",
+        "id": "color_border",
+        "label": "Border & Dividers",
+        "default": "#D8D9D5"
+      },
+      {
+        "type": "color",
+        "id": "color_dark_section",
+        "label": "Black / Dark Accent",
+        "default": "#101214"
+      },
+      {
+        "type": "color",
+        "id": "color_accent",
+        "label": "Brand Accent",
+        "default": "#17191B"
+      }
+    ]
+  },
+  {
+    "name": "Typography",
+    "settings": [
+      {
+        "type": "font_picker",
+        "id": "type_heading_font",
+        "label": "Heading Font",
+        "default": "helvetica_n4"
+      },
+      {
+        "type": "font_picker",
+        "id": "type_body_font",
+        "label": "Body Font",
+        "default": "helvetica_n4"
+      },
+      {
+        "type": "checkbox",
+        "id": "uppercase_headings",
+        "label": "Uppercase Headings",
+        "default": true
+      }
+    ]
+  },
+  {
+    "name": "Cart Settings",
+    "settings": [
+      {
+        "type": "select",
+        "id": "cart_type",
+        "label": "Cart type",
+        "options": [
+          { "value": "drawer", "label": "Slide-out Drawer" },
+          { "value": "page", "label": "Dedicated Page" }
+        ],
+        "default": "drawer"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_cart_notes",
+        "label": "Enable order notes in cart",
+        "default": true
+      },
+      {
+        "type": "number",
+        "id": "free_shipping_threshold",
+        "label": "Free shipping threshold (USD)",
+        "default": 100
+      }
+    ]
+  },
+  {
+    "name": "Social Links",
+    "settings": [
+      {
+        "type": "text",
+        "id": "social_instagram_link",
+        "label": "Instagram URL",
+        "default": "https://instagram.com/hiitrunning"
+      },
+      {
+        "type": "text",
+        "id": "social_tiktok_link",
+        "label": "TikTok URL",
+        "default": "https://tiktok.com/@hiitrunning"
+      },
+      {
+        "type": "text",
+        "id": "social_whatsapp_link",
+        "label": "WhatsApp Support URL",
+        "default": "https://wa.me/1234567890"
+      }
+    ]
+  },
+  {
+    "name": "Customer Support",
+    "settings": [
+      {
+        "type": "text",
+        "id": "support_email",
+        "label": "Support Email",
+        "default": "support@hiitrunning.com"
+      },
+      {
+        "type": "text",
+        "id": "support_hours",
+        "label": "Support Hours",
+        "default": "Mon - Fri, 9:00 AM - 6:00 PM EST"
+      }
+    ]
+  }
+]

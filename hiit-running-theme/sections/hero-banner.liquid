@@ -1,0 +1,102 @@
+<section class="hero-section" id="Hero-{{ section.id }}">
+  <div class="hero-media-wrapper">
+    {%- if section.settings.image != blank -%}
+      <img
+        src="{{ section.settings.image | image_url: width: 2400 }}"
+        sizes="100vw"
+        alt="{{ section.settings.image.alt | default: section.settings.headline | escape }}"
+        class="hero-image"
+        loading="eager"
+        width="{{ section.settings.image.width }}"
+        height="{{ section.settings.image.height }}"
+      >
+    {%- else -%}
+      <img
+        src="{{ 'hero-running.jpg' | asset_url }}"
+        alt="HIIT Running Athlete on Forest Road"
+        class="hero-image"
+        loading="eager"
+      >
+    {%- endif -%}
+    <div class="hero-overlay"></div>
+  </div>
+
+  <div class="page-width hero-content">
+    <h1 class="hero-headline">
+      {{ section.settings.headline | escape }}
+    </h1>
+
+    {%- if section.settings.subtext != blank -%}
+      <p class="hero-subtext">
+        {{ section.settings.subtext | escape }}
+      </p>
+    {%- endif -%}
+
+    <div class="hero-buttons">
+      {%- if section.settings.primary_button_label != blank -%}
+        <a href="{{ section.settings.primary_button_link | default: routes.all_products_collection_url }}" class="btn btn-white">
+          {{ section.settings.primary_button_label | escape }}
+        </a>
+      {%- endif -%}
+
+      {%- if section.settings.secondary_button_label != blank -%}
+        <a href="{{ section.settings.secondary_button_link | default: routes.all_products_collection_url }}" class="btn btn-outline-white">
+          {{ section.settings.secondary_button_label | escape }}
+        </a>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero Banner",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Hero Image",
+      "info": "Cinematic landscape photo recommended (2400 x 1350px)"
+    },
+    {
+      "type": "text",
+      "id": "headline",
+      "label": "Headline",
+      "default": "ELEVATE YOUR PERFORMANCE."
+    },
+    {
+      "type": "textarea",
+      "id": "subtext",
+      "label": "Supporting text",
+      "default": "Performance apparel designed for movement. Find your pace and make every run count."
+    },
+    {
+      "type": "text",
+      "id": "primary_button_label",
+      "label": "Primary Button Label",
+      "default": "SHOP NOW"
+    },
+    {
+      "type": "url",
+      "id": "primary_button_link",
+      "label": "Primary Button Link"
+    },
+    {
+      "type": "text",
+      "id": "secondary_button_label",
+      "label": "Secondary Button Label",
+      "default": "SHOP RUNNING"
+    },
+    {
+      "type": "url",
+      "id": "secondary_button_link",
+      "label": "Secondary Button Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Banner"
+    }
+  ]
+}
+{% endschema %}

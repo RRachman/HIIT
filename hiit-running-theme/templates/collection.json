@@ -1,0 +1,18 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-collection",
+      "settings": {
+        "products_per_page": 12
+      }
+    },
+    "brand_features": {
+      "type": "brand-features",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main",
+    "brand_features"
+  ]
+}

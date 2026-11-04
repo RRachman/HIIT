@@ -1,0 +1,19 @@
+{
+  "sections": {
+    "contact": {
+      "type": "contact-form",
+      "settings": {}
+    },
+    "faq": {
+      "type": "faq-section",
+      "settings": {
+        "subheading": "HELP & GUIDANCE",
+        "title": "FREQUENTLY ASKED QUESTIONS."
+      }
+    }
+  },
+  "order": [
+    "contact",
+    "faq"
+  ]
+}

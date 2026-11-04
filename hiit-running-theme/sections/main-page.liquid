@@ -1,0 +1,21 @@
+<section class="section-spacing page-width" id="MainPage-{{ section.id }}" style="max-width: 900px;">
+  <div style="margin-bottom: 3rem; text-align: center;">
+    <div style="font-size: 0.75rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-text-secondary); margin-bottom: 0.75rem;">
+      HIIT RUNNING
+    </div>
+    <h1 style="font-size: clamp(2.5rem, 5vw, 4rem); letter-spacing: -0.04em; line-height: 1.05;">
+      {{ page.title }}
+    </h1>
+  </div>
+
+  <div class="page-content rte" style="font-size: 1.0625rem; line-height: 1.8; color: var(--color-text-primary);">
+    {{ page.content }}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Page Content",
+  "settings": []
+}
+{% endschema %}

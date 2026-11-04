@@ -1,0 +1,37 @@
+{
+  "current": {
+    "logo_width": 110,
+    "color_bg_primary": "#F0F0ED",
+    "color_bg_secondary": "#E5E6E2",
+    "color_text_primary": "#17191B",
+    "color_text_secondary": "#777B7D",
+    "color_border": "#D8D9D5",
+    "color_dark_section": "#101214",
+    "color_accent": "#17191B",
+    "uppercase_headings": true,
+    "cart_type": "drawer",
+    "enable_cart_notes": true,
+    "free_shipping_threshold": 100,
+    "social_instagram_link": "https://instagram.com/hiitrunning",
+    "social_tiktok_link": "https://tiktok.com/@hiitrunning",
+    "social_whatsapp_link": "https://wa.me/1234567890",
+    "support_email": "support@hiitrunning.com",
+    "support_hours": "Mon - Fri, 9:00 AM - 6:00 PM EST"
+  },
+  "presets": {
+    "Default": {
+      "logo_width": 110,
+      "color_bg_primary": "#F0F0ED",
+      "color_bg_secondary": "#E5E6E2",
+      "color_text_primary": "#17191B",
+      "color_text_secondary": "#777B7D",
+      "color_border": "#D8D9D5",
+      "color_dark_section": "#101214",
+      "color_accent": "#17191B",
+      "uppercase_headings": true,
+      "cart_type": "drawer",
+      "enable_cart_notes": true,
+      "free_shipping_threshold": 100
+    }
+  }
+}

@@ -1,0 +1,81 @@
+<section class="section-spacing page-width" id="MainCollection-{{ section.id }}" data-section-id="{{ section.id }}">
+  {% render 'breadcrumb' %}
+
+  <div style="margin-bottom: 3rem; border-bottom: 1px solid var(--color-border); padding-bottom: 2rem;">
+    <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1.5rem;">
+      <div>
+        <div style="font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; color: var(--color-text-secondary); text-transform: uppercase; margin-bottom: 0.5rem;">
+          {{ 'sections.featured_collection.view_all' | t }}
+        </div>
+        <h1 style="font-size: clamp(2.25rem, 4vw, 3.5rem); letter-spacing: -0.03em; line-height: 1;">
+          {{ collection.title | default: 'ALL RUNNING APPAREL' }}
+        </h1>
+        {%- if collection.description != blank -%}
+          <p style="font-size: 1rem; color: var(--color-text-secondary); margin-top: 1rem; max-width: 36rem;">
+            {{ collection.description }}
+          </p>
+        {%- endif -%}
+      </div>
+
+      {%- comment -%} Sort Selector {%- endcomment -%}
+      <div style="display: flex; align-items: center; gap: 0.75rem;">
+        <label for="SortBy" style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;">
+          SORT:
+        </label>
+        <select
+          id="SortBy"
+          name="sort_by"
+          onchange="location.href = '?sort_by=' + this.value"
+          style="background: transparent; border: 1px solid var(--color-border); padding: 0.5rem 1rem; font-size: 0.8125rem; font-weight: 600; text-transform: uppercase; color: var(--color-text-primary); cursor: pointer; outline: none;"
+        >
+          <option value="manual">Featured</option>
+          <option value="best-selling">Best Selling</option>
+          <option value="title-ascending">Alphabetically, A-Z</option>
+          <option value="price-ascending">Price, low to high</option>
+          <option value="price-descending">Price, high to low</option>
+          <option value="created-descending">Date, new to old</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  {%- paginate collection.products by section.settings.products_per_page -%}
+    {%- if collection.products.size == 0 -%}
+      <div style="text-align: center; padding: 5rem 0;">
+        <p style="font-size: 1.125rem; color: var(--color-text-secondary); margin-bottom: 1.5rem;">
+          No running products found in this category.
+        </p>
+        <a href="{{ routes.all_products_collection_url }}" class="btn btn-primary">
+          VIEW ALL PRODUCTS
+        </a>
+      </div>
+    {%- else -%}
+      <div class="product-grid">
+        {%- for product in collection.products -%}
+          {% render 'product-card', card_product: product %}
+        {%- endfor -%}
+      </div>
+
+      {%- if paginate.pages > 1 -%}
+        {% render 'pagination', paginate: paginate %}
+      {%- endif -%}
+    {%- endif -%}
+  {%- endpaginate -%}
+</section>
+
+{% schema %}
+{
+  "name": "Collection Grid",
+  "settings": [
+    {
+      "type": "range",
+      "id": "products_per_page",
+      "min": 8,
+      "max": 24,
+      "step": 4,
+      "label": "Products per page",
+      "default": 12
+    }
+  ]
+}
+{% endschema %}

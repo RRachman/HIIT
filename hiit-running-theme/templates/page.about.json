@@ -1,0 +1,39 @@
+{
+  "sections": {
+    "about_hero": {
+      "type": "hero-banner",
+      "settings": {
+        "headline": "BUILT TO KEEP GOING.",
+        "subtext": "IT STARTS WITH THE DECISION TO MOVE. Performance is not only about speed—it is about showing up, pushing forward, and finding your own pace.",
+        "primary_button_label": "EXPLORE APPAREL",
+        "secondary_button_label": "OUR PHILOSOPHY"
+      }
+    },
+    "story_split": {
+      "type": "image-with-text",
+      "settings": {
+        "kicker": "OUR PHILOSOPHY",
+        "headline": "MOVEMENT. CONSISTENCY. PROGRESS.",
+        "text": "HIIT is a running apparel brand built around movement, consistency, and personal progress. We believe performance is not only about speed. It is about showing up, pushing forward, and finding your own pace. Built for movement, designed for runners.",
+        "button_label": "SHOP THE RUN"
+      }
+    },
+    "brand_pillars": {
+      "type": "brand-features",
+      "settings": {}
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "settings": {
+        "heading": "JOIN THE HIIT COMMUNITY.",
+        "subtext": "Stay connected with new collections, releases, and running inspiration."
+      }
+    }
+  },
+  "order": [
+    "about_hero",
+    "story_split",
+    "brand_pillars",
+    "newsletter"
+  ]
+}

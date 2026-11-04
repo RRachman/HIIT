@@ -1,0 +1,99 @@
+<footer class="footer" role="contentinfo">
+  <div class="page-width">
+    <div class="footer-grid">
+      {%- comment -%} Brand Column {%- endcomment -%}
+      <div>
+        <div style="margin-bottom: 1rem;">
+          {%- if section.settings.logo != blank -%}
+            <img src="{{ section.settings.logo | image_url: width: 200 }}" alt="{{ shop.name }}" style="max-width: 110px; height: auto;">
+          {%- else -%}
+            <span class="hiit-brand-logo">HIIT</span>
+          {%- endif -%}
+        </div>
+        <p style="font-size: 0.875rem; color: var(--color-text-secondary); max-width: 20rem; line-height: 1.6; margin-bottom: 1.5rem;">
+          {{ section.settings.description | default: 'Performance apparel designed for movement.' }}
+        </p>
+      </div>
+
+      {%- comment -%} Navigation Column {%- endcomment -%}
+      <div>
+        <h4 class="footer-heading">NAVIGATION</h4>
+        <ul class="footer-links">
+          <li><a href="{{ routes.all_products_collection_url }}">Shop All</a></li>
+          <li><a href="/pages/about">Our Story</a></li>
+          <li><a href="/pages/contact">Contact</a></li>
+          <li><a href="/pages/contact#FAQ">FAQ</a></li>
+        </ul>
+      </div>
+
+      {%- comment -%} Social Column {%- endcomment -%}
+      <div>
+        <h4 class="footer-heading">CONNECT</h4>
+        <ul class="footer-links">
+          {%- if settings.social_instagram_link != blank -%}
+            <li><a href="{{ settings.social_instagram_link }}" target="_blank" rel="noopener">Instagram</a></li>
+          {%- endif -%}
+          {%- if settings.social_tiktok_link != blank -%}
+            <li><a href="{{ settings.social_tiktok_link }}" target="_blank" rel="noopener">TikTok</a></li>
+          {%- endif -%}
+          {%- if settings.social_whatsapp_link != blank -%}
+            <li><a href="{{ settings.social_whatsapp_link }}" target="_blank" rel="noopener">WhatsApp Care</a></li>
+          {%- endif -%}
+        </ul>
+      </div>
+
+      {%- comment -%} Legal Column {%- endcomment -%}
+      <div>
+        <h4 class="footer-heading">LEGAL & POLICIES</h4>
+        <ul class="footer-links">
+          {%- if shop.policies.size > 0 -%}
+            {%- for policy in shop.policies -%}
+              <li><a href="{{ policy.url }}">{{ policy.title }}</a></li>
+            {%- endfor -%}
+          {%- else -%}
+            <li><a href="/policies/privacy-policy">Privacy Policy</a></li>
+            <li><a href="/policies/terms-of-service">Terms of Service</a></li>
+            <li><a href="/policies/refund-policy">Refund Policy</a></li>
+            <li><a href="/policies/shipping-policy">Shipping Policy</a></li>
+          {%- endif -%}
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div>
+        {{ section.settings.copyright | default: '© HIIT RUNNING. ALL RIGHTS RESERVED.' }}
+      </div>
+      <div style="display: flex; gap: 1.5rem;">
+        <span>BUILT FOR MOVEMENT</span>
+        <span>·</span>
+        <span>GLOBAL SHIPPING</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Brand description",
+      "default": "Performance apparel designed for movement."
+    },
+    {
+      "type": "text",
+      "id": "copyright",
+      "label": "Copyright text",
+      "default": "© HIIT RUNNING. ALL RIGHTS RESERVED."
+    }
+  ]
+}
+{% endschema %}

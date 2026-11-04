@@ -1,0 +1,138 @@
+<section class="section-spacing page-width" id="ContactSection-{{ section.id }}">
+  <div style="display: grid; grid-template-columns: 1fr; gap: 4rem;" class="contact-layout-grid">
+    {%- comment -%} Left Info Column {%- endcomment -%}
+    <div>
+      <div style="font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-text-secondary); margin-bottom: 0.5rem;">
+        CUSTOMER CARE & SUPPORT
+      </div>
+      <h1 style="font-size: clamp(2.25rem, 4vw, 3.25rem); letter-spacing: -0.03em; margin-bottom: 1.5rem; line-height: 1.1;">
+        WE'RE HERE FOR YOUR RUN.
+      </h1>
+      <p style="font-size: 1rem; color: var(--color-text-secondary); line-height: 1.6; margin-bottom: 2.5rem;">
+        Have a question about product sizing, fabric performance, international shipping, or returning an item? Reach out to our athlete support team.
+      </p>
+
+      <div style="display: flex; flex-direction: column; gap: 1.5rem; border-top: 1px solid var(--color-border); padding-top: 2rem;">
+        <div>
+          <div style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.25rem;">EMAIL</div>
+          <a href="mailto:{{ settings.support_email | default: 'support@hiitrunning.com' }}" style="font-size: 0.9375rem; color: var(--color-text-primary); text-decoration: underline;">
+            {{ settings.support_email | default: 'support@hiitrunning.com' }}
+          </a>
+        </div>
+
+        <div>
+          <div style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.25rem;">SUPPORT HOURS</div>
+          <p style="font-size: 0.9375rem; color: var(--color-text-secondary);">
+            {{ settings.support_hours | default: 'Monday – Friday, 9:00 AM – 6:00 PM EST' }}
+          </p>
+        </div>
+
+        <div>
+          <div style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.25rem;">DIRECT CHAT & SOCIAL</div>
+          <div style="display: flex; gap: 1.5rem; margin-top: 0.5rem; font-size: 0.875rem;">
+            {%- if settings.social_whatsapp_link != blank -%}
+              <a href="{{ settings.social_whatsapp_link }}" target="_blank" rel="noopener" style="font-weight: 700; text-decoration: underline;">WHATSAPP</a>
+            {%- endif -%}
+            {%- if settings.social_instagram_link != blank -%}
+              <a href="{{ settings.social_instagram_link }}" target="_blank" rel="noopener" style="font-weight: 700; text-decoration: underline;">INSTAGRAM</a>
+            {%- endif -%}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {%- comment -%} Right Contact Form {%- endcomment -%}
+    <div style="background: var(--color-bg-secondary); border: 1px solid var(--color-border); padding: 2.5rem 2rem;">
+      <h2 style="font-size: 1.25rem; font-weight: 800; text-transform: uppercase; margin-bottom: 1.5rem;">
+        SEND US A MESSAGE
+      </h2>
+
+      {%- form 'contact', id: 'ContactForm', class: 'contact-form' -%}
+        {%- if form.posted_successfully? -%}
+          <div style="background: var(--color-dark-section); color: var(--color-white); padding: 1.25rem; font-weight: 600; font-size: 0.875rem; margin-bottom: 1.5rem;">
+            {{ 'contact.post_success' | t }}
+          </div>
+        {%- elsif form.errors -%}
+          <div style="color: #d90429; font-size: 0.875rem; margin-bottom: 1.5rem;">
+            {{ form.errors | default_errors }}
+          </div>
+        {%- endif -%}
+
+        <div style="display: flex; flex-direction: column; gap: 1.25rem;">
+          <div>
+            <label for="ContactFormName" style="display: block; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.5rem;">
+              {{ 'contact.name' | t }} *
+            </label>
+            <input
+              type="text"
+              name="contact[name]"
+              id="ContactFormName"
+              value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}"
+              required
+              style="width: 100%; padding: 0.875rem 1rem; border: 1px solid var(--color-border); background: var(--color-white); font-size: 0.875rem; outline: none;"
+            >
+          </div>
+
+          <div>
+            <label for="ContactFormEmail" style="display: block; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.5rem;">
+              {{ 'contact.email' | t }} *
+            </label>
+            <input
+              type="email"
+              name="contact[email]"
+              id="ContactFormEmail"
+              value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
+              required
+              style="width: 100%; padding: 0.875rem 1rem; border: 1px solid var(--color-border); background: var(--color-white); font-size: 0.875rem; outline: none;"
+            >
+          </div>
+
+          <div>
+            <label for="ContactFormOrder" style="display: block; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.5rem;">
+              {{ 'contact.order_number' | t }}
+            </label>
+            <input
+              type="text"
+              name="contact[order_number]"
+              id="ContactFormOrder"
+              placeholder="#HIIT-XXXX"
+              style="width: 100%; padding: 0.875rem 1rem; border: 1px solid var(--color-border); background: var(--color-white); font-size: 0.875rem; outline: none;"
+            >
+          </div>
+
+          <div>
+            <label for="ContactFormMessage" style="display: block; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.5rem;">
+              {{ 'contact.message' | t }} *
+            </label>
+            <textarea
+              name="contact[body]"
+              id="ContactFormMessage"
+              rows="5"
+              required
+              style="width: 100%; padding: 0.875rem 1rem; border: 1px solid var(--color-border); background: var(--color-white); font-size: 0.875rem; outline: none;"
+            >{{ form.body }}</textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="margin-top: 0.5rem;">
+            {{ 'contact.send' | t }}
+          </button>
+        </div>
+      {%- endform -%}
+    </div>
+  </div>
+</section>
+
+<style>
+  @media (min-width: 900px) {
+    .contact-layout-grid {
+      grid-template-columns: 1fr 1fr !important;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Contact Form",
+  "settings": []
+}
+{% endschema %}

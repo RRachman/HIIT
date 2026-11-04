@@ -1,0 +1,29 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "settings": {
+        "show_dynamic_checkout": true
+      }
+    },
+    "related_products": {
+      "type": "featured-products",
+      "settings": {
+        "subheading": "COMPLETE YOUR SYSTEM",
+        "title": "RECOMMENDED GEAR."
+      }
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "settings": {
+        "heading": "JOIN THE HIIT COMMUNITY.",
+        "subtext": "Stay connected with new collections, releases, and running inspiration."
+      }
+    }
+  },
+  "order": [
+    "main",
+    "related_products",
+    "newsletter"
+  ]
+}

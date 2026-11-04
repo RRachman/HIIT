@@ -1,0 +1,31 @@
+{%- comment -%}
+  Renders breadcrumbs navigation
+{%- endcomment -%}
+
+<nav class="breadcrumb-nav" aria-label="Breadcrumb" style="font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-text-secondary); margin-bottom: 1.5rem;">
+  <a href="{{ routes.root_url }}" style="color: var(--color-text-secondary);">{{ 'general.breadcrumbs.home' | t }}</a>
+  <span style="margin: 0 0.5rem; opacity: 0.5;">/</span>
+
+  {%- if template contains 'product' -%}
+    {%- if collection -%}
+      <a href="{{ collection.url }}" style="color: var(--color-text-secondary);">{{ collection.title }}</a>
+      <span style="margin: 0 0.5rem; opacity: 0.5;">/</span>
+    {%- else -%}
+      <a href="{{ routes.all_products_collection_url }}" style="color: var(--color-text-secondary);">SHOP</a>
+      <span style="margin: 0 0.5rem; opacity: 0.5;">/</span>
+    {%- endif -%}
+    <span style="color: var(--color-text-primary);">{{ product.title }}</span>
+
+  {%- elsif template contains 'collection' and collection.handle -%}
+    <span style="color: var(--color-text-primary);">{{ collection.title }}</span>
+
+  {%- elsif template == 'cart' -%}
+    <span style="color: var(--color-text-primary);">{{ 'cart.title' | t }}</span>
+
+  {%- elsif template contains 'page' -%}
+    <span style="color: var(--color-text-primary);">{{ page.title }}</span>
+
+  {%- else -%}
+    <span style="color: var(--color-text-primary);">{{ page_title }}</span>
+  {%- endif -%}
+</nav>

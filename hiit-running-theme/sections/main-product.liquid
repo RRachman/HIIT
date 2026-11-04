@@ -1,0 +1,211 @@
+<section class="section-spacing page-width product-detail-section" id="ProductSection-{{ section.id }}" data-section-id="{{ section.id }}">
+  {% render 'breadcrumb' %}
+
+  <div style="display: grid; grid-template-columns: 1fr; gap: 3rem;" class="product-layout-grid">
+    {%- comment -%} Left Column: Product Gallery {%- endcomment -%}
+    <div class="product-gallery">
+      <div style="position: relative; aspect-ratio: 3 / 4; background-color: var(--color-bg-secondary); overflow: hidden; margin-bottom: 1rem; border: 1px solid var(--color-border);">
+        {%- assign featured_media = product.selected_or_first_available_variant.featured_media | default: product.featured_media -%}
+        {%- if featured_media != blank -%}
+          <img
+            src="{{ featured_media | image_url: width: 1200 }}"
+            alt="{{ featured_media.alt | default: product.title | escape }}"
+            class="product-main-image"
+            style="width: 100%; height: 100%; object-fit: cover;"
+            loading="eager"
+            width="{{ featured_media.width }}"
+            height="{{ featured_media.height }}"
+          >
+        {%- else -%}
+          <img
+            src="{{ 'product-1.jpg' | asset_url }}"
+            alt="{{ product.title | escape }}"
+            class="product-main-image"
+            style="width: 100%; height: 100%; object-fit: cover;"
+            loading="eager"
+          >
+        {%- endif -%}
+
+        {%- if product.available == false -%}
+          <span class="product-badge" style="background: var(--color-border); color: var(--color-text-secondary);">
+            {{ 'products.product.sold_out' | t }}
+          </span>
+        {%- elsif product.compare_at_price > product.price -%}
+          <span class="product-badge">
+            {{ 'products.product.on_sale' | t }}
+          </span>
+        {%- endif -%}
+      </div>
+
+      {%- if product.media.size > 1 -%}
+        <div style="display: flex; gap: 0.75rem; overflow-x: auto; padding-bottom: 0.5rem;" class="product-thumbnails">
+          {%- for media in product.media -%}
+            <button
+              type="button"
+              class="product-thumb-btn {% if forloop.first %}is-active{% endif %}"
+              data-src="{{ media | image_url: width: 1200 }}"
+              style="width: 72px; height: 96px; border: 1px solid var(--color-border); padding: 0; background: none; cursor: pointer; flex-shrink: 0; overflow: hidden;"
+            >
+              <img src="{{ media | image_url: width: 150 }}" alt="{{ media.alt | escape }}" style="width: 100%; height: 100%; object-fit: cover;">
+            </button>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
+
+    {%- comment -%} Right Column: Product Info & Form {%- endcomment -%}
+    <div class="product-info-column" style="display: flex; flex-direction: column; gap: 1.5rem;">
+      <div>
+        <div style="font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; color: var(--color-text-secondary); text-transform: uppercase; margin-bottom: 0.5rem;">
+          {{ product.type | default: 'PERFORMANCE APPAREL' }}
+        </div>
+        <h1 style="font-size: clamp(2rem, 3vw, 2.5rem); letter-spacing: -0.03em; margin-bottom: 0.75rem; line-height: 1.1;">
+          {{ product.title }}
+        </h1>
+
+        <div style="display: flex; align-items: baseline; gap: 1rem;">
+          <span class="product-current-price" style="font-size: 1.5rem; font-weight: 800; color: var(--color-text-primary);">
+            {{ product.selected_or_first_available_variant.price | default: product.price | money }}
+          </span>
+          {%- if product.compare_at_price > product.price -%}
+            <span style="font-size: 1.125rem; text-decoration: line-through; color: var(--color-text-secondary);">
+              {{ product.compare_at_price | money }}
+            </span>
+          {%- endif -%}
+        </div>
+      </div>
+
+      {%- comment -%} Native Shopify Product Form {%- endcomment -%}
+      {%- form 'product', product, id: 'product-form-installment', class: 'product-form' -%}
+        <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" class="product-selected-variant-id">
+
+        {%- unless product.has_only_default_variant -%}
+          <div style="display: flex; flex-direction: column; gap: 1.25rem; border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); padding: 1.5rem 0;">
+            {%- for option in product.options_with_values -%}
+              <div class="option-group" data-option-index="{{ option.position }}">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.625rem;">
+                  <span style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;">
+                    {{ option.name }}: <span style="font-weight: 400; color: var(--color-text-secondary);">{{ option.selected_value }}</span>
+                  </span>
+                  {%- if option.name == 'Size' or option.name == 'size' -%}
+                    <button type="button" data-action="open-size-guide" style="background: none; border: none; font-size: 0.75rem; font-weight: 600; text-decoration: underline; cursor: pointer; color: var(--color-text-secondary);">
+                      {{ 'products.product.size_guide' | t }}
+                    </button>
+                  {%- endif -%}
+                </div>
+
+                <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                  {%- for value in option.values -%}
+                    <button
+                      type="button"
+                      class="variant-btn option-selector-btn {% if option.selected_value == value %}is-selected{% endif %}"
+                      data-value="{{ value | escape }}"
+                    >
+                      {{ value }}
+                    </button>
+                  {%- endfor -%}
+                </div>
+              </div>
+            {%- endfor -%}
+          </div>
+        {%- endunless -%}
+
+        {%- comment -%} Quantity & Actions {%- endcomment -%}
+        <div style="display: flex; flex-direction: column; gap: 1rem; margin-top: 1.5rem;">
+          <div style="display: flex; align-items: center; gap: 1.5rem;">
+            <label style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;">
+              {{ 'products.product.quantity' | t }}
+            </label>
+            <div class="quantity-box">
+              <button type="button" class="quantity-btn" onclick="const input = this.parentNode.querySelector('input'); input.value = Math.max(1, parseInt(input.value || 1) - 1);">-</button>
+              <input type="number" name="quantity" value="1" min="1" class="quantity-input" aria-label="{{ 'products.product.quantity' | t }}">
+              <button type="button" class="quantity-btn" onclick="const input = this.parentNode.querySelector('input'); input.value = parseInt(input.value || 1) + 1;">+</button>
+            </div>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+            <button
+              type="button"
+              class="btn btn-primary product-add-to-cart-btn"
+              style="width: 100%;"
+              {% unless product.selected_or_first_available_variant.available %}disabled{% endunless %}
+              onclick="if (window.HIITCart) { const varId = document.querySelector('.product-selected-variant-id').value; const qty = parseInt(document.querySelector('input[name=quantity]').value || 1); window.HIITCart.addItem(varId, qty); }"
+            >
+              {%- if product.selected_or_first_available_variant.available -%}
+                {{ 'products.product.add_to_cart' | t }}
+              {%- else -%}
+                {{ 'products.product.sold_out' | t }}
+              {%- endif -%}
+            </button>
+
+            {%- if section.settings.show_dynamic_checkout -%}
+              {{ form | payment_button }}
+            {%- else -%}
+              <a href="/checkout" class="btn btn-secondary" style="width: 100%;">
+                {{ 'products.product.buy_now' | t }}
+              </a>
+            {%- endif -%}
+          </div>
+        </div>
+      {%- endform -%}
+
+      {%- comment -%} Description & Collapsible Tabs {%- endcomment -%}
+      <div style="margin-top: 1.5rem; display: flex; flex-direction: column; gap: 1rem;">
+        <div style="font-size: 0.9375rem; color: var(--color-text-secondary); line-height: 1.6;">
+          {{ product.description }}
+        </div>
+
+        <div class="faq-accordion" style="border-top: 1px solid var(--color-border); margin-top: 1rem;">
+          <div class="faq-item" style="border-bottom: 1px solid var(--color-border);">
+            <button type="button" class="faq-trigger" data-accordion-trigger style="width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; background: none; border: none; font-size: 0.8125rem; font-weight: 700; text-transform: uppercase; cursor: pointer; color: var(--color-text-primary);">
+              <span>{{ 'products.product.fabric_details' | t }}</span>
+              <span>+</span>
+            </button>
+            <div class="faq-content" style="padding-bottom: 1rem; font-size: 0.875rem; color: var(--color-text-secondary); line-height: 1.6; display: none;">
+              78% Recycled Technical Polyamide, 22% Elastane. Four-way stretch moisture management with laser-cut breathability zones and reflective safety trims.
+            </div>
+          </div>
+
+          <div class="faq-item" style="border-bottom: 1px solid var(--color-border);">
+            <button type="button" class="faq-trigger" data-accordion-trigger style="width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; background: none; border: none; font-size: 0.8125rem; font-weight: 700; text-transform: uppercase; cursor: pointer; color: var(--color-text-primary);">
+              <span>{{ 'products.product.shipping_returns' | t }}</span>
+              <span>+</span>
+            </button>
+            <div class="faq-content" style="padding-bottom: 1rem; font-size: 0.875rem; color: var(--color-text-secondary); line-height: 1.6; display: none;">
+              Free global standard shipping on orders over $100. Complimentary 30-day hassle-free returns and exchanges on unworn running apparel.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  @media (min-width: 900px) {
+    .product-layout-grid {
+      grid-template-columns: 1.1fr 0.9fr !important;
+      gap: 4rem !important;
+    }
+  }
+  .faq-item.is-open .faq-content {
+    display: block !important;
+  }
+  .faq-item.is-open .faq-trigger span:last-child {
+    transform: rotate(45deg);
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Product information",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_dynamic_checkout",
+      "label": "Show dynamic checkout button",
+      "default": true
+    }
+  ]
+}
+{% endschema %}

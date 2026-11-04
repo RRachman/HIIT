@@ -1,0 +1,127 @@
+<section class="section-spacing page-width" id="FAQ-{{ section.id }}" style="max-width: 900px;">
+  <div style="margin-bottom: 3rem; text-align: center;">
+    <div style="font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-text-secondary); margin-bottom: 0.5rem;">
+      {{ section.settings.subheading | default: 'HELP & GUIDANCE' }}
+    </div>
+    <h2 style="font-size: clamp(2rem, 3.5vw, 2.75rem); letter-spacing: -0.03em;">
+      {{ section.settings.title | default: 'FREQUENTLY ASKED QUESTIONS.' }}
+    </h2>
+  </div>
+
+  <div class="faq-accordion" style="border-top: 1px solid var(--color-border);">
+    {%- if section.blocks.size > 0 -%}
+      {%- for block in section.blocks -%}
+        <div class="faq-item" style="border-bottom: 1px solid var(--color-border);" {{ block.shopify_attributes }}>
+          <button
+            type="button"
+            class="faq-trigger"
+            data-accordion-trigger
+            style="width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 0; background: none; border: none; text-align: left; font-size: 1.0625rem; font-weight: 700; text-transform: uppercase; letter-spacing: -0.01em; cursor: pointer; color: var(--color-text-primary);"
+          >
+            <span>{{ block.settings.question }}</span>
+            <span style="font-size: 1.25rem; font-weight: 300; transition: transform 0.2s ease;">+</span>
+          </button>
+          <div class="faq-content" style="padding-bottom: 1.5rem; font-size: 0.9375rem; color: var(--color-text-secondary); line-height: 1.7; display: none;">
+            {{ block.settings.answer }}
+          </div>
+        </div>
+      {%- endfor -%}
+    {%- else -%}
+      {%- comment -%} Default 5 Questions {%- endcomment -%}
+      <div class="faq-item" style="border-bottom: 1px solid var(--color-border);">
+        <button type="button" class="faq-trigger" data-accordion-trigger style="width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 0; background: none; border: none; text-align: left; font-size: 1.0625rem; font-weight: 700; text-transform: uppercase; cursor: pointer; color: var(--color-text-primary);">
+          <span>1. How do I choose my size?</span>
+          <span>+</span>
+        </button>
+        <div class="faq-content" style="padding-bottom: 1.5rem; font-size: 0.9375rem; color: var(--color-text-secondary); line-height: 1.7; display: none;">
+          HIIT performance gear is designed with an athletic ergonomic silhouette. If you prefer a streamlined, race-ready fit, select your standard size. If you prefer extra room for cold weather layering or casual wear, we recommend sizing up one size. Consult our Size Guide on each product page for detailed chest and waist measurements.
+        </div>
+      </div>
+
+      <div class="faq-item" style="border-bottom: 1px solid var(--color-border);">
+        <button type="button" class="faq-trigger" data-accordion-trigger style="width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 0; background: none; border: none; text-align: left; font-size: 1.0625rem; font-weight: 700; text-transform: uppercase; cursor: pointer; color: var(--color-text-primary);">
+          <span>2. How long does shipping take?</span>
+          <span>+</span>
+        </button>
+        <div class="faq-content" style="padding-bottom: 1.5rem; font-size: 0.9375rem; color: var(--color-text-secondary); line-height: 1.7; display: none;">
+          Domestic US orders are processed within 24 hours on business days and typically arrive within 2–4 business days via carbon-neutral priority shipping. International express shipping delivers within 3–7 business days depending on customs clearance.
+        </div>
+      </div>
+
+      <div class="faq-item" style="border-bottom: 1px solid var(--color-border);">
+        <button type="button" class="faq-trigger" data-accordion-trigger style="width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 0; background: none; border: none; text-align: left; font-size: 1.0625rem; font-weight: 700; text-transform: uppercase; cursor: pointer; color: var(--color-text-primary);">
+          <span>3. Can I exchange an item?</span>
+          <span>+</span>
+        </button>
+        <div class="faq-content" style="padding-bottom: 1.5rem; font-size: 0.9375rem; color: var(--color-text-secondary); line-height: 1.7; display: none;">
+          Yes. We provide free 30-day size and color exchanges for all unworn apparel with original tags attached. Simply initiate your exchange through our automated portal and we will instantly dispatch your replacement upon first courier scan.
+        </div>
+      </div>
+
+      <div class="faq-item" style="border-bottom: 1px solid var(--color-border);">
+        <button type="button" class="faq-trigger" data-accordion-trigger style="width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 0; background: none; border: none; text-align: left; font-size: 1.0625rem; font-weight: 700; text-transform: uppercase; cursor: pointer; color: var(--color-text-primary);">
+          <span>4. How can I track my order?</span>
+          <span>+</span>
+        </button>
+        <div class="faq-content" style="padding-bottom: 1.5rem; font-size: 0.9375rem; color: var(--color-text-secondary); line-height: 1.7; display: none;">
+          As soon as your package leaves our fulfillment facility, you will receive an automated email and SMS notification containing your carrier tracking link and estimated delivery window.
+        </div>
+      </div>
+
+      <div class="faq-item" style="border-bottom: 1px solid var(--color-border);">
+        <button type="button" class="faq-trigger" data-accordion-trigger style="width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 0; background: none; border: none; text-align: left; font-size: 1.0625rem; font-weight: 700; text-transform: uppercase; cursor: pointer; color: var(--color-text-primary);">
+          <span>5. What payment methods are available?</span>
+          <span>+</span>
+        </button>
+        <div class="faq-content" style="padding-bottom: 1.5rem; font-size: 0.9375rem; color: var(--color-text-secondary); line-height: 1.7; display: none;">
+          We accept all major credit cards (Visa, MasterCard, American Express), Apple Pay, Google Pay, Shop Pay, PayPal, and flexible installments through Klarna / Afterpay.
+        </div>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "FAQ Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "HELP & GUIDANCE"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "FREQUENTLY ASKED QUESTIONS."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "question",
+      "name": "FAQ Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "How do I choose my size?"
+        },
+        {
+          "type": "textarea",
+          "id": "answer",
+          "label": "Answer",
+          "default": "HIIT performance apparel features an athletic fit designed for zero distraction."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ Section"
+    }
+  ]
+}
+{% endschema %}

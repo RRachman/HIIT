@@ -1,0 +1,6 @@
+{
+  "name": "HIIT Running — Shopify Online Store 2.0 Theme",
+  "description": "Production-ready Shopify Online Store 2.0 theme for HIIT running apparel, complete with Liquid architecture, Ajax Cart, responsive layouts, and 1-click theme package download.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

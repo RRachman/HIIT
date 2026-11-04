@@ -1,0 +1,81 @@
+{
+  "sections": {
+    "hero_banner": {
+      "type": "hero-banner",
+      "settings": {
+        "headline": "ELEVATE YOUR PERFORMANCE.",
+        "subtext": "Performance apparel designed for movement. Find your pace and make every run count.",
+        "primary_button_label": "SHOP NOW",
+        "secondary_button_label": "SHOP RUNNING"
+      }
+    },
+    "featured_collection": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "NEW ARRIVALS.",
+        "subheading": "SEASON 2026",
+        "products_to_show": 4,
+        "show_view_all": true
+      }
+    },
+    "image_with_text": {
+      "type": "image-with-text",
+      "settings": {
+        "kicker": "PURPOSE & PROGRESS",
+        "headline": "MOVE BETTER. GO FURTHER.",
+        "text": "Built for movement, designed for runners. Discover apparel that moves with your pace and your everyday routine.",
+        "button_label": "DISCOVER HIIT"
+      }
+    },
+    "brand_features": {
+      "type": "brand-features",
+      "blocks": {
+        "feature_1": {
+          "type": "feature",
+          "settings": {
+            "number": "01 — LIGHTWEIGHT",
+            "title": "LIGHTWEIGHT",
+            "description": "Comfort-focused apparel designed for ease of movement."
+          }
+        },
+        "feature_2": {
+          "type": "feature",
+          "settings": {
+            "number": "02 — FUNCTIONAL",
+            "title": "FUNCTIONAL",
+            "description": "Practical silhouettes for running and active everyday life."
+          }
+        },
+        "feature_3": {
+          "type": "feature",
+          "settings": {
+            "number": "03 — OWN YOUR PACE",
+            "title": "OWN YOUR PACE",
+            "description": "Every run is different. Find the pace that works for you."
+          }
+        }
+      },
+      "block_order": [
+        "feature_1",
+        "feature_2",
+        "feature_3"
+      ],
+      "settings": {}
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "settings": {
+        "heading": "JOIN THE HIIT COMMUNITY.",
+        "subtext": "Stay connected with new collections, releases, and running inspiration.",
+        "button_text": "SUBSCRIBE"
+      }
+    }
+  },
+  "order": [
+    "hero_banner",
+    "featured_collection",
+    "image_with_text",
+    "brand_features",
+    "newsletter"
+  ]
+}

@@ -1,0 +1,148 @@
+<!doctype html>
+<html class="no-js" lang="{{ request.locale.iso_code }}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, height=device-height, minimum-scale=1.0">
+    <link rel="canonical" href="{{ canonical_url }}">
+    <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;0,900;1,700;1,900&family=Barlow+Semi+Condensed:ital,wght@0,600;0,700;0,800;0,900;1,700;1,900&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,700;1,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    {%- if settings.favicon != blank -%}
+      <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
+    {%- endif -%}
+
+    <title>
+      {{ page_title }}
+      {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%}
+      {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif -%}
+      {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
+    </title>
+
+    {%- if page_description -%}
+      <meta name="description" content="{{ page_description | escape }}">
+    {%- endif -%}
+
+    {%- comment -%} Open Graph & Twitter Cards {%- endcomment -%}
+    <meta property="og:site_name" content="{{ shop.name }}">
+    <meta property="og:url" content="{{ canonical_url }}">
+    <meta property="og:title" content="{{ page_title | default: shop.name }}">
+    <meta property="og:type" content="website">
+    <meta property="og:description" content="{{ page_description | default: shop.description }}">
+    {%- if page_image -%}
+      <meta property="og:image" content="http:{{ page_image | image_url }}">
+      <meta property="og:image:secure_url" content="https:{{ page_image | image_url }}">
+    {%- endif -%}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ page_title | default: shop.name }}">
+    <meta name="twitter:description" content="{{ page_description | default: shop.description }}">
+
+    {{ content_for_header }}
+
+    <style>
+      :root {
+        --color-bg-primary: {{ settings.color_bg_primary | default: '#F0F0ED' }};
+        --color-bg-secondary: {{ settings.color_bg_secondary | default: '#E5E6E2' }};
+        --color-text-primary: {{ settings.color_text_primary | default: '#17191B' }};
+        --color-text-secondary: {{ settings.color_text_secondary | default: '#777B7D' }};
+        --color-border: {{ settings.color_border | default: '#D8D9D5' }};
+        --color-dark-section: {{ settings.color_dark_section | default: '#101214' }};
+      }
+    </style>
+
+    {{ 'base.css' | asset_url | stylesheet_tag }}
+
+    <script>
+      document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+      window.Shopify = window.Shopify || {};
+      window.Shopify.routes = {
+        root: '{{ routes.root_url }}',
+        cart_url: '{{ routes.cart_url }}',
+        cart_add_url: '{{ routes.cart_add_url }}',
+        cart_change_url: '{{ routes.cart_change_url }}',
+        cart_update_url: '{{ routes.cart_update_url }}',
+        predictive_search_url: '{{ routes.predictive_search_url }}'
+      };
+    </script>
+
+    <script src="{{ 'cart.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'theme.js' | asset_url }}" defer="defer"></script>
+  </head>
+
+  <body class="template-{{ template.name | handle }}">
+    <a class="skip-to-content-link visually-hidden" href="#MainContent">
+      {{ 'general.skip_to_content' | t }}
+    </a>
+
+    {% section 'announcement-bar' %}
+    {% section 'header' %}
+
+    <main id="MainContent" class="content-for-layout focus-none" role="main" tabindex="-1">
+      {{ content_for_layout }}
+    </main>
+
+    {% section 'footer' %}
+
+    {%- comment -%} Slide-out Ajax Cart Drawer {%- endcomment -%}
+    <div class="cart-drawer-overlay" data-action="close-cart" aria-hidden="true"></div>
+    <aside class="cart-drawer" role="dialog" aria-modal="true" aria-label="{{ 'cart.title' | t }}">
+      <div class="cart-drawer-header">
+        <h2 style="font-size: 1rem; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase;">
+          {{ 'cart.title' | t }}
+        </h2>
+        <button type="button" class="drawer-close-btn" data-action="close-cart" aria-label="{{ 'general.close' | t }}">
+          {% render 'icon-close' %}
+        </button>
+      </div>
+
+      <div class="cart-drawer-body">
+        <div class="cart-drawer-empty" style="text-align: center; padding: 3rem 1rem;">
+          <p style="font-size: 0.9375rem; color: var(--color-text-secondary); margin-bottom: 1.5rem;">
+            {{ 'cart.empty' | t }}
+          </p>
+          <a href="{{ routes.all_products_collection_url }}" class="btn btn-primary" data-action="close-cart">
+            {{ 'general.continue_shopping' | t }}
+          </a>
+        </div>
+        <div class="cart-drawer-filled" style="display: none;">
+          <div class="cart-drawer-items"></div>
+        </div>
+      </div>
+
+      <div class="cart-drawer-footer">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+          <span style="font-weight: 700; font-size: 0.875rem; text-transform: uppercase;">{{ 'cart.subtotal' | t }}</span>
+          <span class="cart-drawer-subtotal" style="font-weight: 800; font-size: 1.125rem;">$0.00</span>
+        </div>
+        <p style="font-size: 0.75rem; color: var(--color-text-secondary); margin-bottom: 1.25rem;">
+          {{ 'cart.taxes_included_and_shipping_policy_html' | t }}
+        </p>
+        <a href="/checkout" class="btn btn-primary" style="width: 100%; text-decoration: none;">
+          {{ 'cart.checkout' | t }}
+        </a>
+      </div>
+    </aside>
+
+    {%- comment -%} Search Overlay Modal {%- endcomment -%}
+    <div class="search-modal" style="display: none; position: fixed; inset: 0; background: rgba(16, 18, 20, 0.92); z-index: 9999; padding: 2rem;" role="dialog" aria-modal="true" aria-label="Search">
+      <div style="max-width: 680px; margin: 4rem auto 0; position: relative;">
+        <button type="button" data-action="close-search" style="position: absolute; right: 0; top: -3rem; background: none; border: none; color: #fff; cursor: pointer;" aria-label="{{ 'general.close' | t }}">
+          {% render 'icon-close' %}
+        </button>
+        <form action="{{ routes.search_url }}" method="get" role="search" style="display: flex; gap: 0.5rem; border-bottom: 2px solid #fff; padding-bottom: 0.75rem;">
+          <input
+            type="search"
+            name="q"
+            placeholder="{{ 'general.search_placeholder' | t }}"
+            style="flex: 1; background: transparent; border: none; color: #fff; font-size: 1.25rem; outline: none; font-weight: 600;"
+          >
+          <button type="submit" style="background: none; border: none; color: #fff; cursor: pointer;">
+            {% render 'icon-search' %}
+          </button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

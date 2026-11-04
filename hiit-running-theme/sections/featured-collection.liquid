@@ -1,0 +1,91 @@
+<section class="section-spacing page-width" id="FeaturedCollection-{{ section.id }}">
+  <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2.5rem; border-bottom: 1px solid var(--color-border); padding-bottom: 1.25rem;">
+    <div>
+      <div style="font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-text-secondary); margin-bottom: 0.5rem;">
+        {{ section.settings.subheading | default: 'COLLECTION 01' }}
+      </div>
+      <h2 style="font-size: clamp(1.75rem, 3.5vw, 2.75rem); letter-spacing: -0.03em;">
+        {{ section.settings.title | default: 'NEW ARRIVALS.' }}
+      </h2>
+    </div>
+
+    {%- if section.settings.show_view_all -%}
+      <a href="{{ section.settings.collection.url | default: routes.all_products_collection_url }}" class="nav-link" style="font-size: 0.75rem; letter-spacing: 0.08em;">
+        {{ 'sections.featured_collection.view_all' | t }} &rarr;
+      </a>
+    {%- endif -%}
+  </div>
+
+  {%- assign collection = section.settings.collection -%}
+  <div class="product-grid">
+    {%- if collection != blank and collection.products.size > 0 -%}
+      {%- for product in collection.products limit: section.settings.products_to_show -%}
+        {% render 'product-card', card_product: product %}
+      {%- endfor -%}
+    {%- else -%}
+      {%- comment -%} Fallback when theme is newly previewed before products are linked {%- endcomment -%}
+      {%- for i in (1..section.settings.products_to_show) -%}
+        <div class="product-card">
+          <div class="product-card-media" style="display: flex; align-items: center; justify-content: center; background: var(--color-bg-secondary);">
+            <span style="font-size: 0.75rem; font-weight: 700; color: var(--color-text-secondary); letter-spacing: 0.1em;">
+              HIIT PRODUCT {{ i }}
+            </span>
+            <span class="product-badge">NEW</span>
+          </div>
+          <div class="product-card-info">
+            <div style="font-size: 0.6875rem; font-weight: 700; color: var(--color-text-secondary);">PERFORMANCE APPAREL</div>
+            <h3 class="product-card-title">HIIT THERMAL RUNNING TOP {{ i }}</h3>
+            <div class="product-card-meta">
+              <span class="product-price">$88.00</span>
+            </div>
+          </div>
+        </div>
+      {%- endfor -%}
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Featured Collection",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "NEW ARRIVALS."
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "SEASON 2026"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 2,
+      "max": 12,
+      "step": 2,
+      "label": "Maximum products to show",
+      "default": 4
+    },
+    {
+      "type": "checkbox",
+      "id": "show_view_all",
+      "label": "Show View All link",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Collection"
+    }
+  ]
+}
+{% endschema %}

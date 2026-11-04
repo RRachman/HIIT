@@ -1,0 +1,90 @@
+<section class="section-spacing page-width" id="ImageWithText-{{ section.id }}">
+  <div class="image-with-text-grid">
+    <div class="image-with-text-media">
+      {%- if section.settings.image != blank -%}
+        <img
+          src="{{ section.settings.image | image_url: width: 1400 }}"
+          alt="{{ section.settings.image.alt | default: section.settings.headline | escape }}"
+          loading="lazy"
+          width="{{ section.settings.image.width }}"
+          height="{{ section.settings.image.height }}"
+        >
+      {%- else -%}
+        <img
+          src="{{ 'editorial-running.jpg' | asset_url }}"
+          alt="HIIT Running Athlete Stretching on Forest Trail"
+          loading="lazy"
+        >
+      {%- endif -%}
+    </div>
+
+    <div class="image-with-text-content">
+      <div style="font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-text-secondary); margin-bottom: 1rem;">
+        {{ section.settings.kicker | default: 'PURPOSE & PROGRESS' }}
+      </div>
+      
+      <h2 style="font-size: clamp(2rem, 3.5vw, 3.25rem); letter-spacing: -0.03em; margin-bottom: 1.5rem; line-height: 1.05;">
+        {{ section.settings.headline | escape }}
+      </h2>
+
+      <p style="font-size: 1.0625rem; color: var(--color-text-secondary); line-height: 1.6; margin-bottom: 2.5rem; max-width: 32rem;">
+        {{ section.settings.text | escape }}
+      </p>
+
+      {%- if section.settings.button_label != blank -%}
+        <div>
+          <a href="{{ section.settings.button_link | default: routes.all_products_collection_url }}" class="btn btn-primary">
+            {{ section.settings.button_label | escape }}
+          </a>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Image with text",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "Editorial Kicker",
+      "default": "PURPOSE & PROGRESS"
+    },
+    {
+      "type": "text",
+      "id": "headline",
+      "label": "Headline",
+      "default": "MOVE BETTER. GO FURTHER."
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Supporting text",
+      "default": "Built for movement, designed for runners. Discover apparel that moves with your pace and your everyday routine."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "DISCOVER HIIT"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image with text"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,108 @@
+{
+  "general": {
+    "skip_to_content": "Skip to content",
+    "share": "Share",
+    "close": "Close",
+    "search": "Search",
+    "search_placeholder": "Search running gear, jackets, shorts...",
+    "continue_shopping": "Continue shopping",
+    "breadcrumbs": {
+      "home": "Home"
+    }
+  },
+  "sections": {
+    "header": {
+      "menu": "Menu",
+      "cart": "Cart",
+      "search": "Search",
+      "account": "Account"
+    },
+    "announcement": {
+      "default_text": "FREE SHIPPING ON SELECTED ORDERS OVER $100"
+    },
+    "hero": {
+      "headline": "ELEVATE YOUR PERFORMANCE.",
+      "subtext": "Performance apparel designed for movement. Find your pace and make every run count.",
+      "cta_primary": "SHOP NOW",
+      "cta_secondary": "SHOP RUNNING"
+    },
+    "featured_collection": {
+      "title": "NEW ARRIVALS.",
+      "view_all": "VIEW ALL RUNNING GEAR",
+      "quick_view": "Quick View",
+      "in_stock": "In Stock",
+      "sold_out": "Sold Out"
+    },
+    "image_with_text": {
+      "headline": "MOVE BETTER. GO FURTHER.",
+      "text": "Built for movement, designed for runners. Discover apparel that moves with your pace and your everyday routine.",
+      "button_label": "DISCOVER HIIT"
+    },
+    "brand_features": {
+      "feature_1_number": "01",
+      "feature_1_title": "LIGHTWEIGHT",
+      "feature_1_desc": "Comfort-focused apparel designed for ease of movement.",
+      "feature_2_number": "02",
+      "feature_2_title": "FUNCTIONAL",
+      "feature_2_desc": "Practical silhouettes for running and active everyday life.",
+      "feature_3_number": "03",
+      "feature_3_title": "OWN YOUR PACE",
+      "feature_3_desc": "Every run is different. Find the pace that works for you."
+    },
+    "newsletter": {
+      "headline": "JOIN THE HIIT COMMUNITY.",
+      "subtext": "Stay connected with new collections, releases, and running inspiration.",
+      "email_placeholder": "Enter your email address",
+      "button_label": "SUBSCRIBE",
+      "success_message": "Thank you for joining the HIIT community."
+    },
+    "footer": {
+      "tagline": "Performance apparel designed for movement.",
+      "navigation_title": "Navigation",
+      "legal_title": "Legal",
+      "social_title": "Connect",
+      "copyright": "© HIIT RUNNING. ALL RIGHTS RESERVED."
+    }
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "ADD TO BAG",
+      "buy_now": "BUY NOW",
+      "sold_out": "SOLD OUT",
+      "unavailable": "UNAVAILABLE",
+      "quantity": "Quantity",
+      "regular_price": "Regular price",
+      "sale_price": "Sale price",
+      "unit_price": "Unit price",
+      "on_sale": "Sale",
+      "size_guide": "Size Guide",
+      "fabric_details": "Fabric & Tech Specs",
+      "shipping_returns": "Shipping & Returns",
+      "color": "Color",
+      "size": "Size"
+    }
+  },
+  "cart": {
+    "title": "YOUR RUNNING BAG",
+    "empty": "Your bag is currently empty.",
+    "subtotal": "Subtotal",
+    "taxes_included_and_shipping_policy_html": "Taxes and shipping calculated at checkout",
+    "checkout": "PROCEED TO CHECKOUT",
+    "note": "Add special instructions or order notes",
+    "remove": "Remove",
+    "item_count": {
+      "one": "{{ count }} item",
+      "other": "{{ count }} items"
+    }
+  },
+  "contact": {
+    "title": "CONTACT & CUSTOMER CARE",
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone Number",
+    "order_number": "Order Number (Optional)",
+    "message": "Message",
+    "send": "SEND MESSAGE",
+    "post_success": "Thanks for contacting HIIT. We will reply within 24 hours."
+  }
+}
