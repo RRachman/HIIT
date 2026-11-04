@@ -4,7 +4,7 @@ defineProps<{ items: Array<{ label: string; to?: string }> }>();
 
 <template>
   <nav class="breadcrumb" aria-label="Breadcrumb">
-    <ol>
+    <ol class="breadcrumb-list">
       <li v-for="(item, index) in items" :key="`${item.label}-${index}`">
         <RouterLink v-if="item.to" :to="item.to">{{ item.label }}</RouterLink>
         <span v-else aria-current="page">{{ item.label }}</span>

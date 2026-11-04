@@ -59,12 +59,14 @@ onMounted(() => {
 <template>
   <div v-if="loading && !products.length" class="loading-area product-page-state">
     <span class="spinner" aria-hidden="true"></span>
-    <p>Loading product…</p>
+    <p>Memuat produk…</p>
   </div>
-  <div v-else-if="error" class="status-panel product-page-state" role="alert">{{ error }}</div>
+  <div v-else-if="error" class="status-panel product-page-state" role="alert">
+    Produk gagal dimuat: {{ error }}
+  </div>
   <div v-else-if="!product" class="status-panel product-page-state" role="status">
-    <h1 class="page-title">PRODUCT NOT FOUND</h1>
-    <RouterLink class="btn btn-primary" to="/shop" style="margin-top:1.5rem;">SHOP ALL GEAR</RouterLink>
+    <h1 class="page-title">PRODUK TIDAK DITEMUKAN</h1>
+    <RouterLink class="btn btn-primary" to="/shop" style="margin-top:1.5rem;">LIHAT SEMUA PRODUK</RouterLink>
   </div>
   <ProductPurchaseSection
     v-else

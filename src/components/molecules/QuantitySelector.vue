@@ -4,10 +4,10 @@ const emit = defineEmits<{ 'update:modelValue': [value: number] }>();
 </script>
 
 <template>
-  <div class="quantity-selector" aria-label="Quantity">
+  <div class="quantity-selector" aria-label="Jumlah">
     <button
       type="button"
-      :aria-label="`Decrease quantity to ${Math.max(min, modelValue - 1)}`"
+      :aria-label="`Kurangi jumlah menjadi ${Math.max(min, modelValue - 1)}`"
       :disabled="modelValue <= min"
       @click="emit('update:modelValue', Math.max(min, modelValue - 1))"
     >
@@ -16,7 +16,7 @@ const emit = defineEmits<{ 'update:modelValue': [value: number] }>();
     <output aria-live="polite">{{ modelValue }}</output>
     <button
       type="button"
-      :aria-label="`Increase quantity to ${modelValue + 1}`"
+      :aria-label="`Tambah jumlah menjadi ${modelValue + 1}`"
       @click="emit('update:modelValue', modelValue + 1)"
     >
       <span aria-hidden="true">+</span>

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router';
+import hiitLogo from '@/assets/images/image-removebg-preview.png';
 </script>
 
 <template>
@@ -7,7 +8,9 @@ import { RouterLink } from 'vue-router';
     <div class="page-width">
       <div class="footer-grid">
         <div>
-          <RouterLink to="/" class="hiit-brand-logo">HIIT</RouterLink>
+          <RouterLink to="/" aria-label="HIIT Running home">
+            <img class="brand-mark brand-mark--footer" :src="hiitLogo" alt="Logo HIIT">
+          </RouterLink>
           <p class="text-muted" style="max-width: 22rem; margin-top: 1rem;">
             Performance apparel designed for movement. Find your pace and make every run count.
           </p>

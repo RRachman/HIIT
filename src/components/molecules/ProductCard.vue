@@ -19,6 +19,16 @@ defineProps<{ product: Product }>();
           width="800"
           height="1067"
         >
+        <img
+          v-if="product.images.length > 1"
+          class="product-card-image product-card-image--alternate"
+          :src="product.images[1]"
+          alt=""
+          aria-hidden="true"
+          loading="lazy"
+          width="800"
+          height="1067"
+        >
         <AppBadge v-if="product.badge" :label="product.badge" />
       </div>
       <div class="product-card-info">

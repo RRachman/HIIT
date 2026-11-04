@@ -4,6 +4,7 @@ import { RouterLink, useRoute } from 'vue-router';
 import AppIcon from '@/components/atoms/AppIcon.vue';
 import SearchInput from '@/components/molecules/SearchInput.vue';
 import { useCart } from '@/composables/useCart';
+import hiitLogo from '@/assets/images/image-removebg-preview.png';
 
 const route = useRoute();
 const { itemCount } = useCart();
@@ -31,13 +32,14 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div v-if="route.name !== 'home'" class="announcement-bar" role="region" aria-label="Announcement">
-    FREE SHIPPING ON SELECTED ORDERS OVER $100
+  <div v-if="route.name !== 'home' && route.name !== 'product'" class="announcement-bar" role="region" aria-label="Announcement">
+    FREE SHIPPING ON SELECTED ORDERS OVER Rp 100
   </div>
   <header
     class="header-wrapper"
     :class="{
       'header-wrapper--hero': route.name === 'home',
+      'header-wrapper--product': route.name === 'product',
       'header-wrapper--scrolled': isScrolled,
     }"
   >
@@ -52,8 +54,8 @@ onUnmounted(() => {
         >
           <AppIcon name="menu" />
         </button>
-        <RouterLink to="/" aria-label="HIIT Running home" @click="closePanels">
-          <img src="/images/logo-hiit.svg" alt="HIIT" width="100" height="32">
+        <RouterLink to="/" class="brand-link brand-link--navbar" aria-label="HIIT Running home" @click="closePanels">
+          <img class="brand-mark brand-mark--navbar" :src="hiitLogo" alt="Logo HIIT">
         </RouterLink>
       </div>
 
@@ -89,7 +91,9 @@ onUnmounted(() => {
     <aside v-if="menuOpen" class="mobile-nav-drawer" aria-label="Mobile navigation">
       <div>
         <div class="drawer-header">
-          <RouterLink to="/" class="hiit-brand-logo" @click="closePanels">HIIT</RouterLink>
+          <RouterLink to="/" class="brand-link brand-link--navbar" aria-label="HIIT Running home" @click="closePanels">
+            <img class="brand-mark brand-mark--navbar" :src="hiitLogo" alt="Logo HIIT">
+          </RouterLink>
           <button class="icon-button" type="button" aria-label="Close menu" @click="menuOpen = false">
             <AppIcon name="close" />
           </button>

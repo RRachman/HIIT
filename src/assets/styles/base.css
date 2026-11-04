@@ -15,9 +15,9 @@
   
   --font-heading: 'Barlow', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-display: 'Barlow', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-body: 'Barlow', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-nav: 'Barlow', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-button: 'Barlow', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Euclid Circular A', 'Barlow', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-nav: 'Euclid Circular A', 'Barlow', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-button: 'Euclid Circular A', 'Barlow', -apple-system, BlinkMacSystemFont, sans-serif;
   
   --spacing-container: 1440px;
   --transition-default: 0.2s cubic-bezier(0.16, 1, 0.3, 1);
@@ -136,12 +136,12 @@ a:hover {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  padding: 0.95rem 2rem;
+  padding: 0.9rem 1.5rem;
   font-size: 0.875rem;
-  font-weight: 800;
-  letter-spacing: 0.14em;
+  font-weight: 500;
+  letter-spacing: 0.03em;
   text-transform: uppercase;
-  border-radius: 0;
+  border-radius: 999px;
   transition: all var(--transition-default);
   cursor: pointer;
   border: 1px solid transparent;
@@ -151,14 +151,15 @@ a:hover {
 }
 
 .btn-primary {
-  background-color: var(--color-dark-section);
-  color: var(--color-white);
-  border-color: var(--color-dark-section);
+  background-color: var(--color-white);
+  color: var(--color-text-primary);
+  border-color: var(--color-text-primary);
 }
 
 .btn-primary:hover {
-  background-color: #2a2d30;
-  border-color: #2a2d30;
+  background-color: var(--color-text-primary);
+  border-color: var(--color-text-primary);
+  color: var(--color-white);
   opacity: 1;
 }
 
@@ -177,12 +178,13 @@ a:hover {
 .btn-white {
   background-color: var(--color-white);
   color: var(--color-dark-section);
-  border-color: var(--color-white);
+  border-color: var(--color-dark-section);
 }
 
 .btn-white:hover {
-  background-color: #f0f0f0;
-  border-color: #f0f0f0;
+  background-color: var(--color-dark-section);
+  border-color: var(--color-dark-section);
+  color: var(--color-white);
   opacity: 1;
 }
 
@@ -220,8 +222,31 @@ a:hover {
 }
 
 .header-wrapper--scrolled {
-  background-color: rgba(255, 255, 255, 0.96);
+  background-color: #000;
   backdrop-filter: blur(12px);
+}
+
+.header-wrapper:not(.header-wrapper--hero):not(.header-wrapper--scrolled) {
+  background-color: var(--color-white);
+}
+
+.header-wrapper:not(.header-wrapper--hero) .brand-mark--navbar {
+  filter: brightness(0);
+}
+
+.header-wrapper--scrolled:not(.header-wrapper--hero) .brand-mark--navbar {
+  filter: none;
+}
+
+.header-wrapper--scrolled .nav-link,
+.header-wrapper--scrolled .header-icon-btn,
+.header-wrapper--scrolled .mobile-menu-toggle {
+  color: var(--color-white);
+}
+
+.header-wrapper--scrolled .cart-count-badge {
+  background-color: var(--color-white);
+  color: #000;
 }
 
 .header-container {
@@ -238,8 +263,28 @@ a:hover {
 
 .header-logo img {
   height: auto;
-  max-height: 40px;
+  max-height: 43px;
   display: block;
+}
+
+.brand-mark--navbar {
+  display: block;
+  height: auto;
+  width: 92px;
+}
+
+.brand-link--navbar {
+  align-items: center;
+  display: inline-flex;
+  justify-content: center;
+  padding: 0;
+}
+
+.brand-mark--footer {
+  display: block;
+  filter: brightness(0);
+  height: auto;
+  width: 110px;
 }
 
 /* Athletic HIIT Brand Typography */
@@ -438,12 +483,37 @@ a:hover {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition:
+    opacity 450ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.product-card:hover .product-card-image,
-.product-card:focus-within .product-card-image {
-  transform: scale(1.04);
+.product-card-image--alternate {
+  inset: 0;
+  opacity: 0;
+  position: absolute;
+  transform: scale(1.025);
+}
+
+@media (hover: hover) {
+  .product-card:hover .product-card-image:not(.product-card-image--alternate),
+  .product-card:focus-within .product-card-image:not(.product-card-image--alternate) {
+    opacity: 0;
+    transform: scale(1.025);
+  }
+
+  .product-card:hover .product-card-image--alternate,
+  .product-card:focus-within .product-card-image--alternate {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .product-card,
+  .product-card-image {
+    transition: none;
+  }
 }
 
 .product-badge {

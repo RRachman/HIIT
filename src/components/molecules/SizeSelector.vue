@@ -8,7 +8,7 @@ const emit = defineEmits<{ 'update:modelValue': [size: string] }>();
 </script>
 
 <template>
-  <div class="size-list" role="group" aria-label="Select a size">
+  <div class="size-list" role="group" aria-label="Pilih ukuran">
     <button
       v-for="size in sizes"
       :key="size"

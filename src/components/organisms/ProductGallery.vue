@@ -11,19 +11,20 @@ watch(() => props.images, () => { selectedIndex.value = 0; });
   <div class="product-gallery">
     <div class="product-gallery-main">
       <img :src="selectedImage" :alt="title" width="1000" height="1250">
+      <span class="product-gallery-mobile-brand" aria-hidden="true">HIIT</span>
     </div>
-    <div v-if="images.length > 1" class="product-gallery-thumbs" aria-label="Product images">
+    <div v-if="images.length > 1" class="product-gallery-thumbs" aria-label="Galeri foto produk">
       <button
         v-for="(image, index) in images"
         :key="image"
         type="button"
         class="product-gallery-thumb"
         :class="{ 'is-active': selectedIndex === index }"
-        :aria-label="`View image ${index + 1} of ${images.length}`"
+        :aria-label="`Lihat foto ${index + 1} dari ${images.length}`"
         :aria-pressed="selectedIndex === index"
         @click="selectedIndex = index"
       >
-        <img :src="image" :alt="`${title}, view ${index + 1}`" loading="lazy">
+        <img :src="image" :alt="`${title}, tampilan ${index + 1}`" loading="lazy">
       </button>
     </div>
   </div>

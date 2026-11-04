@@ -1,6 +1,7 @@
-const formatter = new Intl.NumberFormat('en-US', {
+const formatter = new Intl.NumberFormat('id-ID', {
   style: 'currency',
-  currency: 'USD',
+  currency: 'IDR',
+  maximumFractionDigits: 0,
 });
 
 export function formatCurrency(amount: number): string {
