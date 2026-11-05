@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router';
+import heroImage from '@/assets/images/0621dfdc-d0f0-42a4-b44e-e27d8e52c651.png';
 </script>
 
 <template>
@@ -7,11 +8,11 @@ import { RouterLink } from 'vue-router';
     <div class="hero-media-wrapper">
       <img
         class="hero-image"
-        src="/images/hero-running.jpg"
+        :src="heroImage"
         alt="Runner moving through a forest trail"
         fetchpriority="high"
-        width="2400"
-        height="1350"
+        width="1672"
+        height="941"
       >
       <div class="hero-overlay"></div>
     </div>

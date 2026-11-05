@@ -783,12 +783,12 @@ button {
   left: 0;
   position: absolute;
   right: 0;
-  top: 0;
+  top: 36px;
   z-index: 100;
 }
 
 .header-wrapper--hero .header-container {
-  height: clamp(64px, 8vw, 88px);
+  height: clamp(56px, 6vw, 64px);
 }
 
 .header-wrapper--hero .nav-link {
@@ -809,6 +809,7 @@ button {
   background-color: #000;
   color: var(--color-white);
   position: fixed;
+  top: 0;
 }
 
 .header-wrapper--hero .brand-link--navbar,

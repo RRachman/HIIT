@@ -1,4 +1,5 @@
 import type { Product } from '@/types/product';
+import thermalProImage from '@/assets/images/Gemini_Generated_Image_uirkpfuirkpfuirk (1).jpg';
 
 export const mockProducts: Product[] = [
   {
@@ -8,8 +9,8 @@ export const mockProducts: Product[] = [
     price: 88,
     compareAtPrice: 110,
     available: true,
-    featuredImage: '/images/product-1.jpg',
-    images: ['/images/product-1.jpg', '/images/editorial-running.jpg'],
+    featuredImage: thermalProImage,
+    images: [thermalProImage, '/images/editorial-running.jpg'],
     badge: 'PRODUK BARU',
     description:
       'Dirancang untuk latihan intensitas tinggi saat cuaca dingin. Bagian dalam bertekstur mikro-grid memberikan kehangatan optimal, sementara panel berlubang mikro di ketiak membantu melepaskan panas berlebih. Dilengkapi lubang ibu jari dan bukaan jam tangan yang tersembunyi.',

@@ -9,8 +9,10 @@ withDefaults(
     loading?: boolean;
     error?: string;
     emptyMessage?: string;
+    badgeLabel?: string;
+    badgeVariant?: 'default' | 'sale';
   }>(),
-  { loading: false, error: '', emptyMessage: 'No products found.' },
+  { loading: false, error: '', emptyMessage: 'No products found.', badgeVariant: 'default' },
 );
 </script>
 
@@ -19,6 +21,12 @@ withDefaults(
   <div v-else-if="error" class="status-panel" role="alert">{{ error }}</div>
   <div v-else-if="!products.length" class="empty-area text-muted">{{ emptyMessage }}</div>
   <div v-else class="product-grid">
-    <ProductCard v-for="product in products" :key="product.id" :product="product" />
+    <ProductCard
+      v-for="product in products"
+      :key="product.id"
+      :product="product"
+      :badge-label="badgeLabel"
+      :badge-variant="badgeVariant"
+    />
   </div>
 </template>

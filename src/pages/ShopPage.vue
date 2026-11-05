@@ -10,7 +10,12 @@ const { store, products, loading, error } = useProducts();
 const selectedCategory = ref('All');
 const sortBy = ref('featured');
 const query = computed(() => String(route.query.q ?? '').trim().toLowerCase());
-const categories = computed(() => ['All', ...new Set(products.value.map((product) => product.type))]);
+const categories = ['All', 'Tops', 'Bottoms', 'Accessories'];
+const categoryTypes: Record<string, string[]> = {
+  Tops: ['atasan lengan panjang', 'jaket', 'top', 'tops'],
+  Bottoms: ['celana', 'bottom', 'bottoms'],
+  Accessories: ['aksesori', 'accessory', 'accessories'],
+};
 
 watch(
   () => route.query.category,
@@ -22,7 +27,11 @@ watch(
 
 const visibleProducts = computed(() => {
   const filtered = products.value.filter((product) => {
-    const matchesCategory = selectedCategory.value === 'All' || product.type === selectedCategory.value;
+    const type = product.type.toLowerCase();
+    const matchesCategory =
+      selectedCategory.value === 'All' ||
+      categoryTypes[selectedCategory.value]?.includes(type) ||
+      type === selectedCategory.value.toLowerCase();
     const matchesQuery =
       !query.value ||
       `${product.title} ${product.type} ${product.description}`.toLowerCase().includes(query.value);

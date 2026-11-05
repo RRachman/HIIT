@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { onMounted } from 'vue';
 import HeroSection from '@/components/organisms/HeroSection.vue';
+import CategoryCardsSection from '@/components/organisms/CategoryCardsSection.vue';
+import CommunityBannerSection from '@/components/organisms/CommunityBannerSection.vue';
 import NewsletterSection from '@/components/organisms/NewsletterSection.vue';
 import FeaturedProductsSection from '@/components/organisms/FeaturedProductsSection.vue';
 import BrandStorySection from '@/components/organisms/BrandStorySection.vue';
@@ -16,6 +18,8 @@ onMounted(() => {
 
 <template>
   <HeroSection />
+  <CategoryCardsSection />
+  <CommunityBannerSection />
   <FeaturedProductsSection
     :products="products.slice(0, 4)"
     :loading="loading"

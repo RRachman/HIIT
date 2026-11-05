@@ -1,7 +1,13 @@
 <script setup lang="ts">
-defineProps<{ label: string }>();
+withDefaults(
+  defineProps<{
+    label: string;
+    variant?: 'default' | 'sale';
+  }>(),
+  { variant: 'default' },
+);
 </script>
 
 <template>
-  <span class="product-badge">{{ label }}</span>
+  <span class="product-badge" :class="{ 'product-badge--sale': variant === 'sale' }">{{ label }}</span>
 </template>

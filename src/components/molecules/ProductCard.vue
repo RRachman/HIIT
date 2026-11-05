@@ -4,7 +4,14 @@ import AppBadge from '@/components/atoms/AppBadge.vue';
 import type { Product } from '@/types/product';
 import { formatCurrency } from '@/utils/formatCurrency';
 
-defineProps<{ product: Product }>();
+withDefaults(
+  defineProps<{
+    product: Product;
+    badgeLabel?: string;
+    badgeVariant?: 'default' | 'sale';
+  }>(),
+  { badgeVariant: 'default' },
+);
 </script>
 
 <template>
@@ -29,7 +36,11 @@ defineProps<{ product: Product }>();
           width="800"
           height="1067"
         >
-        <AppBadge v-if="product.badge" :label="product.badge" />
+        <AppBadge
+          v-if="badgeLabel || product.badge"
+          :label="badgeLabel ?? product.badge ?? ''"
+          :variant="badgeVariant"
+        />
       </div>
       <div class="product-card-info">
         <span class="eyebrow">{{ product.type }}</span>
